@@ -1,3 +1,5 @@
+---@mod troublesum Neovim plugin to show diagnostics summary in the buffer's corner
+
 local c = require("troublesum.config")
 local M = {}
 

@@ -1,22 +1,52 @@
-M.update()                                                            *M.update*
+==============================================================================
+Neovim plugin to show diagnostics summary in the buffer's corner    *troublesum*
+
+M.update()                                                   *troublesum.update*
     Update diagnostic summary
     Optimally, run this on DiagnosticChanged event
 
 
-M.clear()                                                              *M.clear*
+M.clear()                                                     *troublesum.clear*
     Clear diagnostic summary
 
 
-M.show()                                                                *M.show*
+M.show()                                                       *troublesum.show*
     Show diagnostic summary
 
 
-M.hide()                                                                *M.hide*
+M.hide()                                                       *troublesum.hide*
     Hide diagnostic summary
 
 
-M.setup()                                                              *M.setup*
+M.setup()                                                     *troublesum.setup*
     Setup function
+
+
+Config                                                                *M.Config*
+
+    Fields: ~
+        {enabled}             (boolean)   Enable diagnostic summary
+        {autocmd}             (boolean)   Update diagnostic summary on DiagnosticChanged event
+        {severity_format}     (table)     Formatting of every diagnostic type
+        {severity_highlight}  (table)     Highlight of every diagnostic type
+        {format}              (function)  Formatting function
+        {display_summary}     (function)  Display function
+
+
+M.default_config                                              *M.default_config*
+    Default config
+    Overriten by the config provided in setup()
+
+    Type: ~
+        (Config)
+
+
+M.config                                                              *M.config*
+    User provided config
+    Set by override_config()
+
+    Type: ~
+        (Config)
 
 
 M.override_config()                                          *M.override_config*

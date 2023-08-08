@@ -1,19 +1,23 @@
+---@mod troublesum.config
+
+---@class Config
+---@field enabled boolean Enable diagnostic summary
+---@field autocmd boolean Update diagnostic summary on DiagnosticChanged event
+---@field severity_format table Formatting of every diagnostic type
+---@field severity_highlight table Highlight of every diagnostic type
+---@field format function Formatting function
+---@field display_summary function Display function
+
 local M = {}
 
 ---Default config
 ---Overriten by the config provided in setup()
+---@type Config
 M.default_config = {
-    ---Enable diagnostic summary
     enabled = true,
-    ---Update diagnostic summary on DiagnosticChanged event
     autocmd = true,
-    ---Formatting of every diagnostic type
     severity_format = { "E", "W", "I", "H" },
-    ---Highlight of every diagnostic type
     severity_highlight = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" },
-    ---Formatting function
-    ---@param counts table A table of tuples { severity, count } to format
-    ---@return table Same as virtual_text option in nvim_buf_set_extmark
     format = function(counts)
         local text = {}
         for severity, count in pairs(counts) do
@@ -29,10 +33,6 @@ M.default_config = {
         end
         return text
     end,
-    ---Display function
-    ---@param bufnr number Buffer number
-    ---@param ns number Namespace number
-    ---@text table number Same as virtual_text option in nvim_buf_set_extmark
     display_summary = function(bufnr, ns, text)
         vim.api.nvim_buf_set_extmark(bufnr, ns, 0, 0, {
             virt_text = text,
@@ -43,6 +43,7 @@ M.default_config = {
 
 ---User provided config
 ---Set by override_config()
+---@type Config
 M.config = {}
 
 ---Overrides default config with the user provided one
