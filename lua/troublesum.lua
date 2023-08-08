@@ -16,8 +16,9 @@ end
 
 M.clear = function()
     local ns = vim.api.nvim_get_namespaces()["troublesum"];
-    if ns == nil then return end
-    vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    if ns ~= nil then
+        vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+    end
 end
 
 M.show = function()
