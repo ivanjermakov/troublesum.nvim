@@ -22,7 +22,10 @@ M.setup()                                                     *troublesum.setup*
     Setup function
 
 
-Config                                                                *M.Config*
+==============================================================================
+                                                             *troublesum.config*
+
+Config                                                *troublesum.config.Config*
 
     Fields: ~
         {enabled}             (boolean)   Enable diagnostic summary
@@ -33,7 +36,7 @@ Config                                                                *M.Config*
         {display_summary}     (function)  Display function
 
 
-M.default_config                                              *M.default_config*
+M.default_config                              *troublesum.config.default_config*
     Default config
     Overriten by the config provided in setup()
 
@@ -41,7 +44,7 @@ M.default_config                                              *M.default_config*
         (Config)
 
 
-M.config                                                              *M.config*
+M.config                                              *troublesum.config.config*
     User provided config
     Set by override_config()
 
@@ -49,7 +52,7 @@ M.config                                                              *M.config*
         (Config)
 
 
-M.override_config()                                          *M.override_config*
+M.override_config()                          *troublesum.config.override_config*
     Overrides default config with the user provided one
 
 
