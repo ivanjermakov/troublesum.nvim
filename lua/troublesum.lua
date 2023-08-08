@@ -1,48 +1,17 @@
 local c = require("troublesum.config")
 local M = {}
 
-local display_summary = function(bufnr, ns, text)
-    vim.api.nvim_buf_set_extmark(bufnr, ns, 0, 0, {
-        virt_text = { { text } },
-        virt_text_pos = "right_align"
-    })
-end
-
-local severity_format = {
-    [1] = "E",
-    [2] = "W",
-    [3] = "I",
-    [4] = "H",
-}
-
-local format = function(counts)
-    local str = ""
-    for severity, count in pairs(counts) do
-        if count ~= 0 then
-            if #str ~= 0 then
-                str = str .. " "
-            end
-            str = str .. table.concat({ severity_format[severity], tostring(count) }, " ")
-        end
-    end
-    return str
-end
-
-M.show = function()
+M.update = function()
+    if not c.config.enabled then return end
     local ns = vim.api.nvim_create_namespace("troublesum")
 
-    local counts = {
-        [1] = 0,
-        [2] = 0,
-        [3] = 0,
-        [4] = 0,
-    }
+    local counts = { 0, 0, 0, 0, }
     for _, d in pairs(vim.diagnostic.get(0)) do
         counts[d.severity] = counts[d.severity] + 1
     end
 
     M.clear()
-    display_summary(0, ns, format(counts))
+    c.config.display_summary(0, ns, c.config.format(counts))
 end
 
 M.clear = function()
@@ -51,10 +20,22 @@ M.clear = function()
     vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
 end
 
+M.show = function()
+    c.config.enabled = true
+    M.update()
+end
+
+M.hide = function()
+    M.clear()
+    c.config.enabled = false
+end
+
 M.setup = function(cfg)
     c.override_config(cfg or {})
 
-    vim.cmd [[ autocmd! CursorHold,CursorHoldI * lua require("troublesum").show() ]]
+    if c.config.autocmd then
+        vim.api.nvim_create_autocmd('DiagnosticChanged', { callback = function() M.update() end, })
+    end
 end
 
 return M
