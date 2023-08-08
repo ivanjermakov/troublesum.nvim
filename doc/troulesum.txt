@@ -1,0 +1,26 @@
+M.update()                                                            *M.update*
+    Update diagnostic summary
+    Optimally, run this on DiagnosticChanged event
+
+
+M.clear()                                                              *M.clear*
+    Clear diagnostic summary
+
+
+M.show()                                                                *M.show*
+    Show diagnostic summary
+
+
+M.hide()                                                                *M.hide*
+    Hide diagnostic summary
+
+
+M.setup()                                                              *M.setup*
+    Setup function
+
+
+M.override_config()                                          *M.override_config*
+    Overrides default config with the user provided one
+
+
+vim:tw=78:ts=8:noet:ft=help:norl:

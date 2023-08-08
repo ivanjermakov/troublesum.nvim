@@ -1,6 +1,8 @@
 local c = require("troublesum.config")
 local M = {}
 
+---Update diagnostic summary
+---Optimally, run this on DiagnosticChanged event
 M.update = function()
     if not c.config.enabled then return end
     local ns = vim.api.nvim_create_namespace("troublesum")
@@ -14,6 +16,7 @@ M.update = function()
     c.config.display_summary(0, ns, c.config.format(counts))
 end
 
+---Clear diagnostic summary
 M.clear = function()
     local ns = vim.api.nvim_get_namespaces()["troublesum"];
     if ns ~= nil then
@@ -21,16 +24,19 @@ M.clear = function()
     end
 end
 
+---Show diagnostic summary
 M.show = function()
     c.config.enabled = true
     M.update()
 end
 
+---Hide diagnostic summary
 M.hide = function()
     M.clear()
     c.config.enabled = false
 end
 
+---Setup function
 M.setup = function(cfg)
     c.override_config(cfg or {})
 
