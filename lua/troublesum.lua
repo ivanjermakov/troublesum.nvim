@@ -1,6 +1,7 @@
 ---@mod troublesum Neovim plugin to show diagnostics summary in the buffer's corner
 
 local c = require("troublesum.config")
+
 local M = {}
 
 ---Update diagnostic summary
@@ -43,7 +44,9 @@ M.setup = function(cfg)
     c.override_config(cfg or {})
 
     if c.config.autocmd then
-        vim.api.nvim_create_autocmd('DiagnosticChanged', { callback = function() M.update() end, })
+        vim.api.nvim_create_autocmd(
+            { "DiagnosticChanged", "WinScrolled", "WinResized" },
+            { callback = function() M.update() end })
     end
 end
 
