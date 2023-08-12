@@ -13,9 +13,7 @@ use "ivanjermakov/troublesum.nvim"
 -- Lazy.nvim:
 {
     "ivanjermakov/troublesum.nvim",
-    config = function()
-        require("troublesum").setup()
-    end
+    config = true
 }
 ```
 
