@@ -7,14 +7,22 @@ Neovim plugin to show diagnostics summary in the buffer's corner, similar to Jet
 ## Installation
 
 ```lua
--- Packer:
+-- Packer.nvim:
 use "ivanjermakov/troublesum.nvim"
+
+-- Lazy.nvim:
+{
+    "ivanjermakov/troublesum.nvim",
+    config = function()
+        require("troublesum").setup()
+    end
+}
 ```
 
 ## Configuration
 
 ```lua
-require("troublesum.vnim").setup({
+require("troublesum").setup({
     enabled = true,
     autocmd = true,
     severity_format = { "E", "W", "I", "H" },
