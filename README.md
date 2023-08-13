@@ -31,6 +31,7 @@ use "ivanjermakov/troublesum.nvim"
         format = function(counts) end,
         display_summary = function(bufnr, ns, text) end
     }
+}
 ```
 
 ## Credits
