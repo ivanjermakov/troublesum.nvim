@@ -1,7 +1,7 @@
 ---@mod troublesum.config
 
 ---@class Config
----@field enabled boolean Enable diagnostic summary
+---@field enabled boolean|function Enable diagnostic summary
 ---@field autocmd boolean Update diagnostic summary on DiagnosticChanged event
 ---@field severity_format table Formatting of every diagnostic type
 ---@field severity_highlight table Highlight of every diagnostic type

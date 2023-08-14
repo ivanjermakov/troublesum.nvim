@@ -28,12 +28,12 @@ M.setup()                                                     *troublesum.setup*
 Config                                                *troublesum.config.Config*
 
     Fields: ~
-        {enabled}             (boolean)   Enable diagnostic summary
-        {autocmd}             (boolean)   Update diagnostic summary on DiagnosticChanged event
-        {severity_format}     (table)     Formatting of every diagnostic type
-        {severity_highlight}  (table)     Highlight of every diagnostic type
-        {format}              (function)  Formatting function
-        {display_summary}     (function)  Display function
+        {enabled}             (boolean|function)  Enable diagnostic summary
+        {autocmd}             (boolean)           Update diagnostic summary on DiagnosticChanged event
+        {severity_format}     (table)             Formatting of every diagnostic type
+        {severity_highlight}  (table)             Highlight of every diagnostic type
+        {format}              (function)          Formatting function
+        {display_summary}     (function)          Display function
 
 
 M.default_config                              *troublesum.config.default_config*

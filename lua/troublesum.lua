@@ -7,7 +7,9 @@ local M = {}
 ---Update diagnostic summary
 ---Optimally, run this on DiagnosticChanged event
 M.update = function()
+    if type(c.config.enabled) == "function" and not c.config.enabled() then return end
     if not c.config.enabled then return end
+
     local ns = vim.api.nvim_create_namespace("troublesum")
 
     local counts = { 0, 0, 0, 0, }
